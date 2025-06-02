@@ -1,4 +1,10 @@
 "use client"
+import dynamic from "next/dynamic";
+
+// منع SSR لهذا المكون
+const PortfolioClient = dynamic(() => import("@/components/PortfolioClient"), {
+  ssr: false,
+});
 
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
