@@ -579,10 +579,17 @@ export default function Portfolio() {
           <div className="grid lg:grid-cols-2 gap-12">
             {[
               {
-                title: t("portfolioWebsite"),
-                description: "A modern, responsive portfolio website with advanced animations and 3D effects",
-                image: "/placeholder.svg?height=400&width=600",
-                tags: ["React", "TypeScript", "Tailwind"],
+                title: t("DainoBot"),
+                description: "A Discord bot that can help you manage your server and automate tasks",
+                image: "/daino.png",
+                tags: ["Discord", "Node.js", "Next.js", "Tailwind"],
+                status: "Live",
+              },
+              {
+                title: t("Rive Team"),
+                description: "A team of developers who are passionate about creating innovative solutions, Manager of the team",
+                image: "/rive-banner.png",
+                tags: ["Rive Inc", "Manager"],
                 status: "Live",
               },
             ].map((project, index) => (
@@ -654,7 +661,7 @@ export default function Portfolio() {
               <div className="space-y-6">
                 {[
 { icon: Mail, label: t("email"), value: "azzoukaabdennour123@gmail.com" },
-{ icon: Phone, label: t("phone"), value: "+212 633707304" },
+{icon : Instagram, label: t("instagram"), value: "911ditto"},
                 ].map((item, index) => (
                   <div key={index} className="flex items-center space-x-6 group">
                     <div className="w-14 h-14 bg-gray-100 rounded-2xl flex items-center justify-center group-hover:bg-gray-200 transition-colors duration-300">

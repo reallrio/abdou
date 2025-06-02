@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Created with Rive Team',
   generator: 'Rive Team',
 }
-
+ 
 export default function RootLayout({
   children,
 }: Readonly<{

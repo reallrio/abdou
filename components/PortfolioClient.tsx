@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Portfolio from "@/app/page"; // إذا كنت تريد نقل الكود من `page.tsx` إلى هنا انسخه يدويًا
+import Portfolio from "@/app/page"; 
 
 export default function PortfolioClient() {
   return <Portfolio />;
