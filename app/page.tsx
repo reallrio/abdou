@@ -39,6 +39,7 @@ export default function Portfolio() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 })
   const heroRef = useRef<HTMLDivElement>(null)
   const sphereRef = useRef<HTMLDivElement>(null)
 
@@ -204,12 +205,24 @@ export default function Portfolio() {
       setScrollY(window.scrollY)
     }
 
+    const handleResize = () => {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+    }
+
+    // Set initial dimensions
+    handleResize()
+
     window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener("scroll", handleScroll)
+    window.addEventListener("resize", handleResize)
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", handleResize)
     }
   }, [])
 
@@ -331,8 +344,8 @@ export default function Portfolio() {
             className="w-96 h-96 rounded-full bg-gradient-to-br from-gray-200 to-gray-400 shadow-2xl transform transition-transform duration-1000 ease-out"
             style={{
               transform: `
-                rotateX(${(mousePosition.y - window.innerHeight / 2) * 0.01}deg)
-                rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg)
+                rotateX(${(mousePosition.y - (windowDimensions.height / 2)) * 0.01}deg)
+                rotateY(${(mousePosition.x - (windowDimensions.width / 2)) * 0.01}deg)
                 translateZ(${Math.sin(Date.now() * 0.001) * 20}px)
               `,
               filter: "blur(0.5px)",
