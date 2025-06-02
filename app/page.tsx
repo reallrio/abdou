@@ -40,6 +40,7 @@ export default function Portfolio() {
   const [scrollY, setScrollY] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [windowDimensions, setWindowDimensions] = useState({ width: 0, height: 0 })
+  const [animationValue, setAnimationValue] = useState(0)
   const heroRef = useRef<HTMLDivElement>(null)
   const sphereRef = useRef<HTMLDivElement>(null)
 
@@ -212,6 +213,14 @@ export default function Portfolio() {
       })
     }
 
+    // Animation frame for the sphere
+    let animationFrameId: number
+    const animate = () => {
+      setAnimationValue(Math.sin(Date.now() * 0.001) * 20)
+      animationFrameId = requestAnimationFrame(animate)
+    }
+    animate()
+
     // Set initial dimensions
     handleResize()
 
@@ -223,6 +232,7 @@ export default function Portfolio() {
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", handleResize)
+      cancelAnimationFrame(animationFrameId)
     }
   }, [])
 
@@ -346,7 +356,7 @@ export default function Portfolio() {
               transform: `
                 rotateX(${(mousePosition.y - (windowDimensions.height / 2)) * 0.01}deg)
                 rotateY(${(mousePosition.x - (windowDimensions.width / 2)) * 0.01}deg)
-                translateZ(${Math.sin(Date.now() * 0.001) * 20}px)
+                translateZ(${animationValue}px)
               `,
               filter: "blur(0.5px)",
             }}
